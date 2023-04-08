@@ -17,13 +17,14 @@ public class PayStackImpl implements PayStackService {
     private final String SECRET_KEY = System.getenv("SECRET_KEY");
 
     @Override
-    public PayStackAccountResponse resolveUserAccount(String accountNumber, String accountName) throws InvalidAccount {
+    public PayStackAccountResponse resolveUserAccount(String accountNumber, String bankCode) throws InvalidAccount {
         try {
             ResponseEntity<PayStackAccountResponse> payStackAccountResponseResponseEntity = WebClient.create("https://api.paystack.co/bank/resolve")
                     .get()
                     .uri(uriBuilder -> uriBuilder
                             .queryParam("account_number", accountNumber)
-                            .queryParam("bank_code", accountName)
+//                            .queryParam("account_name", accountName)
+                            .queryParam("bank_code", bankCode)
                             .queryParam("currency", "NGN")
                             .build())
                     .headers(httpHeaders -> {

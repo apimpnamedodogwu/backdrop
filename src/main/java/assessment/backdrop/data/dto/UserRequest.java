@@ -10,4 +10,5 @@ import lombok.Setter;
 public class UserRequest {
     private String accountName;
     private String accountNumber;
+    private String bankCode;
 }
