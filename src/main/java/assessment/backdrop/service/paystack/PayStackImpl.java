@@ -23,7 +23,6 @@ public class PayStackImpl implements PayStackService {
                     .get()
                     .uri(uriBuilder -> uriBuilder
                             .queryParam("account_number", accountNumber)
-//                            .queryParam("account_name", accountName)
                             .queryParam("bank_code", bankCode)
                             .queryParam("currency", "NGN")
                             .build())

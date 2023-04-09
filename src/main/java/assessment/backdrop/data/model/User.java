@@ -1,7 +1,6 @@
 package assessment.backdrop.data.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -18,5 +17,6 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String accountNumber;
     private boolean isVerified;
+    private String bankCode;
 
 }

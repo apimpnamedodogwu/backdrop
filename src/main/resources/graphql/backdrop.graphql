@@ -1,6 +1,20 @@
-schema {
-    query: Query
-}
-type Query{
 
-    }
+type Mutation{
+    verifyUser(accountNumber: String!, bankCode: String!) : String!
+}
+
+type User {
+    accountName: String!
+    accountNumber: String!
+    isVerified: Boolean!
+
+}
+
+type Query {
+    findUserByAccountNumberAndBankCode(accountNumber: String!, bankCode: String!): String!
+}
+
+
+
+
+

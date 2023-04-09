@@ -19,28 +19,29 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
     private final PayStackService payStackService;
     private final UserRepository repository;
-    private static final int SIMILARITY_THRESHOLD = 3;
+    private static final int SIMILARITY_THRESHOLD = 2;
 
 
     @Override
-    public User verifyUser(UserRequest request) throws InvalidAccount, UnidentifiedUser {
+    public String verifyUser(UserRequest request) throws InvalidAccount, UnidentifiedUser {
         User user = new User();
         PayStackAccountResponse response = payStackService.resolveUserAccount(request.getAccountNumber(), request.getBankCode());
         if (response.isStatus() && Objects.equals(response.getAccountName(), request.getAccountName())) {
             user.setVerified(true);
         }
-        if (!Objects.equals(response.getAccountName(), request.getAccountName())) {
+        if (!Objects.equals(response.getAccountName(), request.getAccountName()) && response.isStatus()) {
             boolean checkedName = checkNameSimilarity(request.getAccountName(), response.getAccountName());
-            if (!checkedName) throw new UnidentifiedUser("User " + request.getAccountName() + " cannot be found!");
+            if (!checkedName) throw new UnidentifiedUser("User " + request.getAccountName() + " does not match!");
             else user.setVerified(true);
         }
-        return repository.save(user);
+        User savedUser = repository.save(user);
+        return savedUser.getAccountName();
     }
 
 
-    private static boolean checkNameSimilarity(String name1, String name2) {
+    private boolean checkNameSimilarity(String nameOne, String nameTwo) {
         LevenshteinDistance levenshteinDistance = new LevenshteinDistance();
-        int distance = levenshteinDistance.apply(name1.toLowerCase(), name2.toLowerCase());
+        int distance = levenshteinDistance.apply(nameOne.toLowerCase(), nameTwo.toLowerCase());
         return distance <= SIMILARITY_THRESHOLD;
     }
 }
