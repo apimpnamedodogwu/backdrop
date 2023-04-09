@@ -15,6 +15,8 @@ public class User implements Serializable {
     private String accountName;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String accountNumber;
     private boolean isVerified;
     private String bankCode;

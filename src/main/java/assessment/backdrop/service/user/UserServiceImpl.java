@@ -8,9 +8,8 @@ import assessment.backdrop.service.error.InvalidAccount;
 import assessment.backdrop.service.error.UnidentifiedUser;
 import assessment.backdrop.service.paystack.PayStackService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.apache.commons.text.similarity.LevenshteinDistance;
-
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 

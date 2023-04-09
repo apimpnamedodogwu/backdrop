@@ -5,5 +5,5 @@ import assessment.backdrop.service.error.InvalidAccount;
 import assessment.backdrop.service.error.UnidentifiedUser;
 
 public interface UserService {
-    public String verifyUser(UserRequest request) throws InvalidAccount, UnidentifiedUser;
+    String verifyUser(UserRequest request) throws InvalidAccount, UnidentifiedUser;
 }

@@ -1,0 +1,20 @@
+
+schema {
+    query: Query
+}
+
+type User {
+    accountName: String
+    accountNumber: String
+    isVerified: Boolean
+
+}
+
+type Query {
+    findUserAccountNameByAccountNumberAndBankCode(accountNumber: String, bankCode: String): String
+}
+
+
+
+
+
