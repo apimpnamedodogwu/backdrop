@@ -19,7 +19,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class GraphQLService {
     private final FetchVerifiedUser fetchVerifiedUser;
-    @Value("classpath:schema.graphql")
+    @Value("classpath:graphql/schema.graphqls")
     private Resource resource;
 
     private GraphQL graphQL;
