@@ -14,7 +14,3 @@ type Query {
     findUserAccountNameByAccountNumberAndBankCode(accountNumber: String, bankCode: String): String
 }
 
-
-
-
-
